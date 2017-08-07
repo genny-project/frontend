@@ -1,6 +1,6 @@
 {
   "id": "test2",
-  "active": true,
+  "active": false,
   "trigger": {
     "name": "APP_INIT",
     "maxEvents": 1

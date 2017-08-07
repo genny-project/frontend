@@ -19,8 +19,11 @@
       "response": {
         "type": "event",
         "event": {
-          "name": "MATT_IS_AWESOME",
-          "type": 1
+          "name": "ALERT",
+          "type": 1,
+          "data": {
+            "message": "Hello world"
+          }
         }
       }
     }

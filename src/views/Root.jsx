@@ -91,40 +91,40 @@ const initEvent = new Event({
 /* Trigger the app init event */
 initEvent.publish();
 
-const timerEvent = new Event({
-  name: 'TIMER_SCHEDULE',
-  type: EventType.REQRES,
-  data: {
-    delay: 5000,
-    repeat: true,
-  },
-});
-
-const apiVersionEvent = new Event({
-  name: 'PLEASED_HTTP_REQUEST',
-  type: EventType.REQRES,
-  maxResponses: 1,
-  data: {
-    method: 'get',
-    path: '/version'
-  },
-});
-
-const saveAPIStoreEvent = new Event({
-  name: 'STORE_SAVE_API',
-  type: EventType.REQ,
-});
-
-timerEvent.setResponseHandler(() => {
-  apiVersionEvent.publish();
-});
-
-const responseFilter = new Filter({
-  status: 200
-});
-
-apiVersionEvent.setResponseHandler( data => {
-  apiStore.set({ version: data.data });
-}, responseFilter );
-
-timerEvent.publish();
+// const timerEvent = new Event({
+//   name: 'TIMER_SCHEDULE',
+//   type: EventType.REQRES,
+//   data: {
+//     delay: 5000,
+//     repeat: true,
+//   },
+// });
+//
+// const apiVersionEvent = new Event({
+//   name: 'PLEASED_HTTP_REQUEST',
+//   type: EventType.REQRES,
+//   maxResponses: 1,
+//   data: {
+//     method: 'get',
+//     path: '/version'
+//   },
+// });
+//
+// const saveAPIStoreEvent = new Event({
+//   name: 'STORE_SAVE_API',
+//   type: EventType.REQ,
+// });
+//
+// timerEvent.setResponseHandler(() => {
+//   apiVersionEvent.publish();
+// });
+//
+// const responseFilter = new Filter({
+//   status: 200
+// });
+//
+// apiVersionEvent.setResponseHandler( data => {
+//   apiStore.set({ version: data.data });
+// }, responseFilter );
+//
+// timerEvent.publish();
