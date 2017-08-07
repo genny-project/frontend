@@ -1,0 +1,28 @@
+{
+  "id": "test2",
+  "active": true,
+  "trigger": {
+    "name": "APP_INIT",
+    "maxEvents": 1
+  },
+  "actions": [
+    {
+      "type": "event",
+      "event": {
+        "name": "TIMER_SCHEDULE",
+        "type": 2,
+        "data": {
+          "delay": 1000,
+          "repeat": true
+        }
+      },
+      "response": {
+        "type": "event",
+        "event": {
+          "name": "MATT_IS_AWESOME",
+          "type": 1
+        }
+      }
+    }
+  ]
+}

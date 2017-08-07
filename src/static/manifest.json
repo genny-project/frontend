@@ -1,0 +1,9 @@
+{
+  "name": "NAME HERE",
+  "short_name": "SHORT NAME HERE",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FFFFFF",
+  "theme_color": "#FFFFFF"
+}
