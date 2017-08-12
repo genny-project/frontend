@@ -1,4 +1,3 @@
-import config from 'config';
 import React, { Component } from 'react';
 import Routes from '../Routes.jsx';
 

@@ -11,12 +11,10 @@ import {
   EventBus,
   Event,
   EventType,
-  Subscription,
   EventSourceAdapterLoader,
   EventSource,
-  Filter,
   Store,
-  Workflow
+  Workflow,
 } from 'utils/gennyjs/core';
 import { TimerAdapter, HttpAdapter, AlertAdapter } from 'utils/gennyjs/bundled/event-source-adapter';
 import { Timer, Alert } from 'utils/gennyjs/bundled/event-sources';
@@ -36,37 +34,26 @@ const Root = (
   </Provider>
 );
 
-ReactDOM.render( Root, document.getElementById( 'root' ));
+ReactDOM.render(Root, document.getElementById('root'));
 
 /* Load the bundled event source adapters */
-EventSourceAdapterLoader.register( 'timer', TimerAdapter );
-EventSourceAdapterLoader.register( 'http', HttpAdapter );
-EventSourceAdapterLoader.register( 'alert', AlertAdapter );
+EventSourceAdapterLoader.register('timer', TimerAdapter);
+EventSourceAdapterLoader.register('http', HttpAdapter);
+EventSourceAdapterLoader.register('alert', AlertAdapter);
+
+const eventSources = [];
 
 /* Load the bundled event sources */
-const timerEventSource = new EventSource( Timer );
-const alertEventSource = new EventSource( Alert );
+const timerEventSource = new EventSource(Timer);
+const alertEventSource = new EventSource(Alert);
 
-/* Load custom event sources */
-const ppAPI = new EventSource({
-  adapter: 'http',
-  subscribe: [
-    { name: 'PLEASED_HTTP_REQUEST', mapTo: 'HTTP_REQUEST', options: {
-      filter: {
-        path: '/version',
-      },
-    }},
-  ],
-  publish: [],
-  config: {
-    baseURL: 'https://api.pleasedproperty.com.au'
-  }
-});
+eventSources.push(timerEventSource);
+eventSources.push(alertEventSource);
 
-Logger.setLevel( LogLevel.DEBUG );
+Logger.setLevel(LogLevel.DEBUG);
 
 /* Create a new store */
-const apiStore = new Store( 'api', {
+const apiStore = new Store('api', {
   autoSave: true,
   autoSaveTime: 15000,
   persistent: true,
@@ -74,14 +61,19 @@ const apiStore = new Store( 'api', {
 
 window.apiStore = apiStore;
 
-EventBus.defineEvent( customEvents );
+EventBus.defineEvent(customEvents);
+
+const workflows = [];
 
 /* Create a test workflow */
 const workflow = new Workflow(testWorkflow);
 const workflow2 = new Workflow(testWorkflow2);
 
+workflows.push(workflow);
+workflows.push(workflow2);
+
 /* Define the app init event */
-EventBus.defineEvent( 'APP_INIT' );
+EventBus.defineEvent('APP_INIT');
 
 const initEvent = new Event({
   name: 'APP_INIT',
@@ -90,41 +82,3 @@ const initEvent = new Event({
 
 /* Trigger the app init event */
 initEvent.publish();
-
-// const timerEvent = new Event({
-//   name: 'TIMER_SCHEDULE',
-//   type: EventType.REQRES,
-//   data: {
-//     delay: 5000,
-//     repeat: true,
-//   },
-// });
-//
-// const apiVersionEvent = new Event({
-//   name: 'PLEASED_HTTP_REQUEST',
-//   type: EventType.REQRES,
-//   maxResponses: 1,
-//   data: {
-//     method: 'get',
-//     path: '/version'
-//   },
-// });
-//
-// const saveAPIStoreEvent = new Event({
-//   name: 'STORE_SAVE_API',
-//   type: EventType.REQ,
-// });
-//
-// timerEvent.setResponseHandler(() => {
-//   apiVersionEvent.publish();
-// });
-//
-// const responseFilter = new Filter({
-//   status: 200
-// });
-//
-// apiVersionEvent.setResponseHandler( data => {
-//   apiStore.set({ version: data.data });
-// }, responseFilter );
-//
-// timerEvent.publish();
