@@ -1,0 +1,12 @@
+.buckets {
+  min-width: 100%;
+  display: flex;
+  min-height: 100vh;
+  overflow-y: scroll;
+
+  .bucket {
+    &:nth-child( even ) {
+      background: #999999;
+    }
+  }
+}

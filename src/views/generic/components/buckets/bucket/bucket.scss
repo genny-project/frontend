@@ -1,0 +1,32 @@
+.bucket {
+  min-height: 100%;
+  padding: 15px;
+  min-width: 300px;
+  background: #a3a3a3;
+  flex-grow: 1;
+  max-width: 500px;
+
+  .title-holder {
+    padding: 15px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: rgba( 255, 255, 255, 0.8 );
+
+    .title {
+      text-align: center;
+      font-size: 1.1em;
+    }
+
+    .count {
+      border: 2px solid #FFF;
+      border-radius: 10px;
+      padding: 8px 10px;
+
+      .value {
+        color: #FFF;
+      }
+    }
+  }
+
+}

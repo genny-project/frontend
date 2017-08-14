@@ -1,0 +1,20 @@
+.info-bar {
+  padding: 20px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  color: #95989a;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.04), 0 3px 6px rgba(0, 0, 0, 0.16);
+
+  .title {
+    font-size: 1.3em;
+    margin-bottom: 15px;
+  }
+
+  .subtitles {
+    display: flex;
+
+    .subtitle {
+      margin-right: 50px;
+    }
+  }
+}

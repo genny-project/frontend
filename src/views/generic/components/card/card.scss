@@ -1,0 +1,32 @@
+.card {
+  background: #FFF;
+  padding: 12px;
+  border-radius: 5px;
+  color: #555;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.04), 0 3px 6px rgba(0, 0, 0, 0.16);
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+
+  .status {
+    height: 20px;
+    width: 10px;
+    border-radius: 4px;
+
+    &.grey {
+      background: grey;
+    }
+
+    &.green {
+      background: #4cbf5e;
+    }
+
+    &.orange {
+      background: #f8a554;
+    }
+
+    &.red {
+      background: #d34545;
+    }
+  }
+}

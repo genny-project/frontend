@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Navbar } from 'views/generic/components';
 import Routes from '../Routes.jsx';
 
 class App extends Component {
@@ -9,7 +10,10 @@ class App extends Component {
 
   render() {
     return (
-      <Routes />
+      <main>
+        <Navbar appName="EXAMPLE APP" />
+        <Routes />
+      </main>
     );
   }
 }
